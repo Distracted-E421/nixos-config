@@ -1,4 +1,4 @@
-# 🚀 NixOS Homelab Configuration
+# NixOS Homelab Configuration
 
 <div align="center">
 
@@ -43,9 +43,9 @@ This repository contains my complete NixOS homelab infrastructure configuration.
 
 ---
 
-## ✨ **Features**
+## **Features**
 
-### **🏗️ Architecture**
+### **Architecture**
 
 - ✅ **Flake-parts** for clean, organized configuration
 - ✅ **sops-nix** for encrypted secrets in public repo
