@@ -169,22 +169,22 @@ Configuration is organized into reusable modules with simple enable/disable flag
     };
     
     # Applications
-    apps = {
+  apps = {
       development.enable = true;
-      gaming.enable = true;
-      media.enable = true;
+    gaming.enable = true;
+    media.enable = true;
       productivity.enable = true;
-    };
-    
+  };
+  
     # Hardware
-    hardware = {
+  hardware = {
       gpu-nvidia.enable = false;
-      gpu-intel.enable = true;
+    gpu-intel.enable = true;
       laptop.enable = false;
-    };
-    
-    # System features
-    system = {
+  };
+  
+  # System features
+  system = {
       boot-menu.enable = true;
       snapshots.enable = true;
     };
