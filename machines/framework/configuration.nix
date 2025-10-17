@@ -35,15 +35,21 @@ in {
   homelab.apps.development.enable = true;
   homelab.hardware.laptop.enable = true;
   
-  # Enable k0s Kubernetes controller
-  # Framework serves as the control plane for the homelab cluster
-  homelab.services.k0s-controller = {
-    enable = true;
-    # Tailscale IP will be configured once Tailscale is set up
-    # For now, bind to all interfaces
-    tailscaleIP = "";  # Leave empty to bind to 0.0.0.0
-    apiServerPort = 6443;
-  };
+  # ============================================
+  # K0S KUBERNETES CLUSTER
+  # ============================================
+  # NOTE: k0s is deployed and running via systemd service
+  # The k0s-controller module is not in public nixos-config yet
+  # k0s runs independently and doesn't need to be managed here
+  #
+  # To check status: sudo systemctl status k0scontroller
+  # To manage cluster: sudo /usr/local/bin/k0s kubectl get nodes
+  #
+  # homelab.services.k0s-controller = {
+  #   enable = true;
+  #   tailscaleIP = "";
+  #   apiServerPort = 6443;
+  # };
 
   # ============================================
   # CONDITIONAL CONFIGURATION
