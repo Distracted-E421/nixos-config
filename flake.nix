@@ -16,15 +16,9 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    
-    # Secrets management with sops-nix
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, flake-parts, home-manager, hyprland, sops-nix }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, flake-parts, home-manager, hyprland }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       
@@ -44,9 +38,6 @@
             modules = [
               ./machines/obsidian/hardware-configuration.nix
               ./machines/obsidian/configuration.nix
-              
-              # Secrets management
-              sops-nix.nixosModules.sops
               
               # Core system modules
               ./modules/common.nix
@@ -89,10 +80,6 @@
             modules = [
               ./machines/nixos-test/hardware-configuration.nix
               ./machines/nixos-test/configuration.nix
-              
-              # Secrets management
-              sops-nix.nixosModules.sops
-              
               ./modules/common.nix
               ./modules/users/e421.nix
               
@@ -136,10 +123,6 @@
             modules = [
               ./machines/framework/hardware-configuration.nix
               ./machines/framework/configuration.nix
-              
-              # Secrets management
-              sops-nix.nixosModules.sops
-              
               ./modules/common.nix
               ./modules/users/e421.nix
               ./modules/desktop/hyprland.nix
@@ -161,10 +144,6 @@
             modules = [
               ./machines/neon-laptop/hardware-configuration.nix
               ./machines/neon-laptop/configuration.nix
-              
-              # Secrets management
-              sops-nix.nixosModules.sops
-              
               ./modules/common.nix
               ./modules/users/e421.nix
               ./modules/desktop/kde-plasma.nix
@@ -187,10 +166,6 @@
             modules = [
               ./machines/pi-server/hardware-configuration.nix
               ./machines/pi-server/configuration.nix
-              
-              # Secrets management
-              sops-nix.nixosModules.sops
-              
               ./modules/common.nix
               ./modules/users/e421.nix
               ./modules/services/homelab-server.nix

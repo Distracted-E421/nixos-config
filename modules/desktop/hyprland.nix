@@ -27,14 +27,11 @@
       };
     };
     
-    # XDG Desktop Portals for Wayland
+    # XDG Desktop Portals - handled automatically by programs.hyprland
+    # Just ensure xdg-desktop-portal-gtk is available for file pickers
     xdg.portal = {
       enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-gtk
-      ];
-      config.common.default = "*";
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     };
     
     # Hyprland ecosystem packages

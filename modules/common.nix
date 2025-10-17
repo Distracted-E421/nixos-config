@@ -4,9 +4,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [
-    ./secrets.nix  # sops-nix secrets management
-  ];
   # Nix settings
   nix = {
     settings = {
@@ -121,8 +118,8 @@
   
   # Environment variables to prevent GUI password prompts
   environment.variables = {
-    GIT_ASKPASS = "";  # Disable GUI askpass
-    SSH_ASKPASS = "";  # Disable SSH GUI askpass
+    GIT_ASKPASS = lib.mkDefault "";  # Disable GUI askpass
+    SSH_ASKPASS = lib.mkDefault "";  # Disable SSH GUI askpass (allow override for desktop)
   };
   
   # ZSH as default shell with useful aliases

@@ -75,17 +75,6 @@
       };
     };
     
-    # Enable touchpad support
-    services.xserver.libinput = {
-      enable = true;
-      touchpad = {
-        naturalScrolling = true;
-        tapping = true;
-        middleEmulation = true;
-        disableWhileTyping = true;
-      };
-    };
-    
     # Backlight control
     programs.light.enable = true;
     
@@ -98,9 +87,6 @@
       
       # Battery monitoring
       upower
-      
-      # TLP UI
-      tlpui
     ];
     
     # Add user to video group for backlight control
