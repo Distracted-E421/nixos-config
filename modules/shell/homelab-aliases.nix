@@ -328,7 +328,7 @@
           echo "📋 Recent changes in homelab:"
           git log --oneline --decorate -10
         }
-      '';
-    };
-  };
-}
+      '';  # End of interactiveShellInit
+    };  # End of programs.zsh
+  };  # End of config
+}  # End of module
