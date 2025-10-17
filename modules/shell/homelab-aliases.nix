@@ -284,7 +284,7 @@
           cd ~/homelab
           git add -A
           git commit -m "$msg"
-          GIT_ASKPASS='' git push origin main
+          GIT_ASKPASS='''' git push origin main
           echo "✅ Committed and pushed: $msg"
         }
         
