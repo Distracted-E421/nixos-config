@@ -4,6 +4,12 @@
 { config, pkgs, lib, ... }:
 
 {
+  # Import shell customization modules
+  imports = [
+    ./shell/homelab-aliases.nix
+    ./shell/oh-my-zsh-enhanced.nix
+  ];
+  
   # Nix settings
   nix = {
     settings = {
@@ -121,12 +127,6 @@
     GIT_ASKPASS = lib.mkDefault "";  # Disable GUI askpass
     SSH_ASKPASS = lib.mkDefault "";  # Disable SSH GUI askpass (allow override for desktop)
   };
-  
-  # Import shell customization modules
-  imports = [
-    ./shell/homelab-aliases.nix
-    ./shell/oh-my-zsh-enhanced.nix
-  ];
   
   # Enable enhanced shell environment
   homelab.shell.aliases.enable = true;
