@@ -122,78 +122,15 @@
     SSH_ASKPASS = lib.mkDefault "";  # Disable SSH GUI askpass (allow override for desktop)
   };
   
-  # ZSH as default shell with useful aliases
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-    
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "docker" "sudo" "history" "gh" ];
-      theme = "robbyrussell";
-    };
-    
-    shellAliases = {
-      # System management
-      rebuild = "sudo nixos-rebuild switch --flake /etc/nixos";
-      update = "cd /etc/nixos && sudo nix flake update && sudo nixos-rebuild switch --flake .";
-      cleanup = "sudo nix-collect-garbage -d";
-      
-      # NixOS rebuild shortcuts
-      nrs = "sudo nixos-rebuild switch --flake .";
-      nrb = "sudo nixos-rebuild boot --flake .";
-      nrt = "sudo nixos-rebuild test --flake .";
-      nfu = "nix flake update";
-      
-      # Navigation
-      ll = "eza -lah --icons";
-      la = "eza -A --icons";
-      l = "eza -lh --icons";
-      
-      # Homelab navigation
-      cdh = "cd /home/e421/homelab";
-      cdnix = "cd /home/e421/homelab/devices/Obsidian/config";
-      
-      # Git shortcuts (with TUI-safe options)
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gp = "GIT_ASKPASS='' git push";  # Force no askpass
-      gpl = "GIT_ASKPASS='' git pull";  # Force no askpass
-      gl = "git log --oneline --graph";
-      gd = "git diff";
-      gb = "git branch";
-      gco = "git checkout";
-      
-      # GitHub CLI shortcuts
-      ghpr = "gh pr list";
-      ghpv = "gh pr view";
-      ghpc = "gh pr create";
-      ghrl = "gh release list";
-      ghst = "gh auth status";
-      
-      # Homelab git workflow (TUI-safe)
-      hpush = "cd /home/e421/homelab && git add -A && git commit -m 'Quick update' && GIT_ASKPASS='' git push origin main";
-      hpull = "cd /home/e421/homelab && GIT_ASKPASS='' git pull origin main";
-      hsync = "cd /home/e421/homelab && GIT_ASKPASS='' git pull origin main && git add -A && git commit -m 'Sync' && GIT_ASKPASS='' git push origin main";
-      
-      # Better tools
-      cat = "bat";
-      grep = "rg";
-      find = "fd";
-      top = "htop";
-    };
-    
-    # Load SSH keys on shell startup
-    loginShellInit = ''
-      # Start SSH agent if not running
-      if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent &> /dev/null; then
-        eval $(ssh-agent -s) > /dev/null 2>&1
-      fi
-    '';
-  };
+  # Import shell customization modules
+  imports = [
+    ./shell/homelab-aliases.nix
+    ./shell/oh-my-zsh-enhanced.nix
+  ];
+  
+  # Enable enhanced shell environment
+  homelab.shell.aliases.enable = true;
+  homelab.shell.oh-my-zsh-enhanced.enable = true;
   
   # Starship prompt
   programs.starship = {
