@@ -15,6 +15,20 @@
       autosuggestions.enable = true;
       syntaxHighlighting.enable = true;
       
+      # History configuration
+      histSize = 100000;
+      histFile = "$HOME/.zsh_history";
+      setOptions = [
+        "EXTENDED_HISTORY"       # Write the history file in extended format
+        "SHARE_HISTORY"          # Share history between all sessions
+        "HIST_IGNORE_DUPS"       # Don't record duplicate entries
+        "HIST_IGNORE_SPACE"      # Don't record entries starting with space
+        "HIST_SAVE_NO_DUPS"      # Don't write duplicate entries
+        "HIST_VERIFY"            # Show command before executing from history
+        "HIST_REDUCE_BLANKS"     # Remove superfluous blanks
+        "HIST_FIND_NO_DUPS"      # Don't show duplicates in search
+      ];
+      
       # Oh-My-ZSH configuration
       ohMyZsh = {
         enable = true;
@@ -87,22 +101,7 @@
       # ═══════════════════════════════════════════════════════════
       # SHELL INITIALIZATION
       # ═══════════════════════════════════════════════════════════
-      initExtra = ''
-        # ═══════════════════════════════════════════════════════════
-        # HISTORY CONFIGURATION
-        # ═══════════════════════════════════════════════════════════
-        HISTSIZE=100000
-        SAVEHIST=100000
-        HISTFILE=~/.zsh_history
-        
-        # History options
-        setopt EXTENDED_HISTORY          # Write the history file in extended format
-        setopt SHARE_HISTORY             # Share history between all sessions
-        setopt HIST_IGNORE_DUPS          # Don't record duplicate entries
-        setopt HIST_IGNORE_SPACE         # Don't record entries starting with space
-        setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries
-        
-      
+      interactiveShellInit = ''
         # ═══════════════════════════════════════════════════════════
         # ZSH OPTIONS
         # ═══════════════════════════════════════════════════════════
@@ -119,11 +118,6 @@
         setopt AUTO_MENU            # Show menu on tab
         setopt AUTO_LIST            # List choices on ambiguous completion
         setopt COMPLETE_ALIASES     # Complete aliases
-        
-        # History
-        setopt HIST_VERIFY          # Show command before executing from history
-        setopt HIST_REDUCE_BLANKS   # Remove superfluous blanks
-        setopt HIST_FIND_NO_DUPS    # Don't show duplicates in search
         
         # Correction
         setopt CORRECT              # Correct commands
