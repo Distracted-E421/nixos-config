@@ -90,8 +90,6 @@
       history = {
         size = 100000;
         save = 100000;
-        path = "$HOME/.zsh_history";
-        ignoreAllDups = true;
         ignoreDups = true;
         ignoreSpace = true;
         extended = true;
