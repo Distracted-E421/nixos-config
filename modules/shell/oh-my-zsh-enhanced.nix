@@ -85,21 +85,24 @@
       };
       
       # ═══════════════════════════════════════════════════════════
-      # HISTORY CONFIGURATION
-      # ═══════════════════════════════════════════════════════════
-      history = {
-        size = 100000;
-        save = 100000;
-        ignoreDups = true;
-        ignoreSpace = true;
-        extended = true;
-        share = true;  # Share history between terminals
-      };
-      
-      # ═══════════════════════════════════════════════════════════
       # SHELL INITIALIZATION
       # ═══════════════════════════════════════════════════════════
       initExtra = ''
+        # ═══════════════════════════════════════════════════════════
+        # HISTORY CONFIGURATION
+        # ═══════════════════════════════════════════════════════════
+        HISTSIZE=100000
+        SAVEHIST=100000
+        HISTFILE=~/.zsh_history
+        
+        # History options
+        setopt EXTENDED_HISTORY          # Write the history file in extended format
+        setopt SHARE_HISTORY             # Share history between all sessions
+        setopt HIST_IGNORE_DUPS          # Don't record duplicate entries
+        setopt HIST_IGNORE_SPACE         # Don't record entries starting with space
+        setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries
+        
+      
         # ═══════════════════════════════════════════════════════════
         # ZSH OPTIONS
         # ═══════════════════════════════════════════════════════════
