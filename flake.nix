@@ -131,7 +131,7 @@
             ];
           };
           
-          # Neon laptop
+          # Neon laptop - Mobile workstation
           neon-laptop = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { 
@@ -144,10 +144,24 @@
             modules = [
               ./machines/neon-laptop/hardware-configuration.nix
               ./machines/neon-laptop/configuration.nix
+              
+              # Core system
               ./modules/common.nix
               ./modules/users/e421.nix
+              
+              # Desktop environment
               ./modules/desktop/kde-plasma.nix
+              ./modules/desktop/hyprland.nix  # Available as fallback
+              ./modules/desktop/gnome.nix     # Available as fallback
+              
+              # Full application suite
               ./modules/apps/development.nix
+              ./modules/apps/browsers.nix
+              ./modules/apps/media.nix
+              ./modules/apps/productivity.nix
+              ./modules/apps/torrents.nix
+              
+              # Hardware support
               ./modules/hardware/laptop.nix
               ./modules/hardware/gpu-intel.nix
             ];
