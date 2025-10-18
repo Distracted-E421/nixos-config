@@ -16,9 +16,14 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, flake-parts, home-manager, hyprland }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, flake-parts, home-manager, hyprland, disko }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
       
@@ -142,7 +147,10 @@
               };
             };
             modules = [
-              ./machines/neon-laptop/hardware-configuration.nix
+              # Disko for declarative disk partitioning
+              disko.nixosModules.disko
+              ./machines/neon-laptop/disko-config.nix
+              
               ./machines/neon-laptop/configuration.nix
               
               # Core system
