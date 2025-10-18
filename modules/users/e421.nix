@@ -19,10 +19,13 @@
     ];
     shell = pkgs.zsh;
     
+    # Initial password: "nixos" (change after first login!)
+    # Generated with: mkpasswd -m sha-512
+    initialPassword = "nixos";
+    
     # SSH authorized keys
     openssh.authorizedKeys.keys = [
-      # Add your SSH public keys here
-      # "ssh-ed25519 AAAAC3... your-key@hostname"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE9oIyR76GP9/88hhpQfgB+50LmcvD5QJDMulMTgtRnZ e421@Obsidian"
     ];
   };
   

@@ -1,29 +1,27 @@
-# Disk configuration for neon-laptop
-# Lenovo ThinkPad T14 - NVMe disk
+{ config, pkgs, lib, ... }:
 
 {
   disko.devices = {
     disk = {
-      main = {
+      nvme0n1 = {
         type = "disk";
         device = "/dev/nvme0n1";
+        # This will wipe the disk!
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
-              size = "512M";
+            boot = {
+              name = "boot";
+              size = "1G";  # Increased from 512M
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "defaults"
-                  "umask=0077"
-                ];
               };
             };
             swap = {
+              name = "swap";
               size = "16G";
               content = {
                 type = "swap";
@@ -31,6 +29,7 @@
               };
             };
             root = {
+              name = "root";
               size = "100%";
               content = {
                 type = "filesystem";
